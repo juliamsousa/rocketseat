@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Aulas da Rocketseat sobre JS</title>
+        <meta charset="UTF-8"> 
+    </head>
+    <body>
+        <header>
+            <h1>Aulas da Rocketseat sobre JS</h1>
+            <h2> Introdução </h2>
+            <ul>
+                <li>
+                    <p>Variáveis e dados</p>
+                </li>
+                <li>
+                    <p>Operações matemáticas</p>
+                </li>
+                <li>
+                    <p>Funções</p>
+                </li>
+                <li>
+                    <p>Condicionais</p>
+                </li>
+                <li>
+                    <p>Operadores Lógicos</p>
+                </li>
+                <li>
+                    <p>Estruturas de repetição</p>
+                </li>
+                <li>
+                    <p>Intervalo e timeout</p>
+                </li>
+            </ul>
+            <h2> Desafio </h2>
+            <p>Concluído!</p>
+    </header>
+
+        <!-- nao é obrigatorio mas é interessante colocar os scripts ao final do html -->
+        <script>
+            // declaracao de uma variavel, nao e necessario tipar
+            var nome = "Joao";
+            // e possivel fazer atribuicoes de diferentes tipos pois as variaveis sao dinamicas
+            nome = 2;
+            // declaracao de um array de variaveis
+            // é possivel colocar variaveis de tipos diferentes
+            var alunos = ['Diego', 'Joao', 2, 45.7];
+            // declaracao de um objeto, similar a uma struct em c++
+            var alunoObjeto = {
+                nome: 'Diego',
+                idade: 23,
+                peso: 90.5,
+                humano: true
+            };
+            // console.log imprime a informacao no console
+            console.log(nome);
+            // todos os dados do array sao impressos em sequencia [ dado1, dado2, ..., dadoN]
+            console.log(alunos);
+            // referenciar uma posicao do array
+            console.log(alunos[1])
+            // acesso do dado de um objeto: objeto.dado
+            console.log("A idade do aluno "+alunoObjeto.nome+" e: "+alunoObjeto.idade);
+        </script>
+
+        <!-- operacoes matematicas -->
+        <script>
+            var x=10, y=5;
+            // podemos exibir em um unico console.log mais de uma variavel
+            console.log(x, y);
+            // fazendo atribuicao da soma a uma outra variavel
+            // outras operacoes podem ser realizadas (+, -, /, %)
+            var resultado = x+y;
+            // imprimindo o resultado no console
+            console.log("O resultado e: "+resultado);
+            // fazendo soma com um valor inteiro e uma string
+            x='julia';
+            resultado = x+y;
+            // ao imprimir na tela o valor inteiro é transformado em string e temos uma concatenacao das duas variaveis
+            console.log("O resultado da segunda operacao e: "+resultado);
+            // += tambem é suportado pela linguagem
+            y+=3;
+            console.log("y+=3= "+y);
+            // outras opecaoes como (/=, *=, -=, %=) sao suportadas
+            y-=3
+            console.log("y-=y= "+y);
+            y*=3;
+            console.log("y*=3= "+y);
+            y/=3;
+            console.log("y/=3= "+y);
+            y%=y;
+            console.log("y%=y= "+y);
+        </script>
+
+        <!-- funcoes em JavaScript -->
+        <script>
+            // criacao de uma funcao que soma dois parametros e retona o resultado
+            function soma (n1, n2)
+            { 
+                return (n1+n2);
+            }
+            // atribuindo o retorno da funcao a uma variavel
+            var resultado = soma (10, 12.5);
+            console.log("O resultado da funcao e: "+resultado);
+            // é possivel chamar a funcao dentro do console.log
+            console.log("O resultado da funcao e: "+soma (0, 12.5));
+
+            // criacao de uma funcao com condicional utilizando if
+            function retornaGeneroIf (genero)
+            {
+                // == verifica se os valores sao iguais
+                // === verifica se os valores e se o tipo é o mesmo
+                if (genero == 'M')
+                {
+                    return 'Masculino'
+                }
+                    else if (genero == 'F')
+                    {
+                        return 'Feminino'
+                    }
+                        else 
+                        {
+                            return 'Outro'
+                        }
+            }
+
+            // criacao de uma funcao com condicional utilizando o switch
+            function retornaGeneroSwitch (genero)
+            {
+                // o switch funciona de maneira semelhante ao switch de outras linguagens
+                switch(genero)
+                {
+                    case 'M':
+                        return 'Masculino';
+                    case 'F':
+                        return 'Feminino';
+                    default:
+                        return 'Outro';
+           
+                }
+            }
+
+            // testando o retorno das duas funcoes
+            console.log("O genero da pessoa é: "+retornaGeneroIf ('Nao binario'));
+            console.log("O genero da segunda pessoa é: "+retornaGeneroSwitch("M"));
+        </script>
+
+        <!-- Operadores logicos no JS-->
+        <script>
+            // and, or, not (&&, ||, !)
+            var genero ='M', idade =43;
+
+            // operador de diferenca
+            if (genero!='NB')
+            {
+                console.log("A pessoa nao e nb");
+            }
+            // operador logico OR
+            if (genero=='M' || idade>=18)
+            {
+                console.log("A pessoa é do genero masculino e maior de idade")
+            }
+
+            // é possivel fazer atribuicao do retorno de uma condicao
+            var masculino = (genero === 'M');
+
+            console.log("A condicao é: "+masculino);
+        </script>
+
+        <!-- Condicao ternaria -->
+        <script>
+            var genero ='F';
+            // podemos reduzir um if / else para a seguinte condicao
+            var retorno = (genero==='M') ? 'Masculino' : 'Feminino';
+            console.log("O retorno da condicao ternaria é: "+retorno);
+        </script>
+
+        <!-- Estruturas de repetição -->
+        <script>
+            // estrutura do for
+            // imprime no console os numeros de 0 a 10
+            // o FOR é recomendado para quando já soubermos o intervalo de repeticao
+            console.log("Impressao utilizando for: ");
+            for (var i=0; i<=10; i++)
+            {
+                console.log(i);
+            }
+
+            // estrutura do while
+            // imprime no console os numeros de 0 a 10
+            // o WHILE é recomendado para quando não soubermos o intervalo de iterações
+            var i=0;
+            console.log("Impressao utilizando o while: ");
+            while (i<=10)
+            {
+                console.log(i);
+                i++;
+            }
+        </script>
+
+        <!-- Intervalo e Timeout -->
+        <script>
+            // intervalo e timeout sao utilizados para definir um tempo de repeticao para uma funcao
+            // funcao que imprime algo no console
+            function exibeAlgo()
+            {
+                console.log("Uso do interval");
+            }
+            // setInterval define o intervalo de repeticao da função em milisegundos
+            // nesse caso nao utilizamos () depois da função pois estmaos apenas passando sua referencia
+            // caso utilziassemos exibeAlgo() estariamos chamando a funcao dentro da funcao setInterval
+            // a funcao esta comentada para que nao fique repetindo ao longo do desenvolvimento
+
+            // setInterval(exibeAlgo, 5000)
+
+            // setTimeout define um delay para a execução da função
+            // sua medida tambem é em milisegundos
+            
+            // setTimeout(exibeAlgo, 5000);
+        </script>
+
+        <!-- Desafios da Aula de Introdução da RocketSeat -->
+        <script>
+            // exercicio numero 1 dos desafios
+            console.log("Exercicio 1: ");
+            // objeto endereco que contem os dados do usuario
+            var endereco = 
+            {
+                rua: "Rua dos Pinheiros",
+                numero: 1293,
+                bairro: "Centro",
+                cidade: "São Paulo",
+                uf: "SP"
+            };
+
+            // funcao que imprime o endereco de um usuario de acordo com o objeto enedereco
+            function imprimeEndereco (endereco)
+            {
+               return ("O usuário mora em "+endereco.cidade+" / "+endereco.uf+", no bairro "+endereco.bairro+", "+"na rua "+endereco.rua+" com nº "+endereco.numero+".");
+            }
+
+            // chamada da funcao
+            console.log(imprimeEndereco(endereco));
+        </script>
+
+        <script>
+            // exercicio numero 2 dos desafios
+            console.log("Exercicio 2:");
+            var x=1, y=85;
+
+            // funcao que verifica quais numeros do intervalo [x, y]
+            function pares (x, y)
+            {
+                var j=x;
+                while (j<=y)
+                {
+                    if (j%2 == 0)
+                    {
+                        console.log(j);
+                        j+=2;
+                    }
+                        else
+                        {
+                            j++;
+                            console.log(j);
+                            j+=2;
+                        }
+                }
+            }
+
+            // chamada da funcao para teste
+            pares(x, y);
+        </script>
+
+        <script>
+            // exercicio numero 3 do desafio
+            // array.indexOf(elemento) retorna o indice da ocorrencia do elemento dentro do array
+            // caso nao haja o elemento no array o retorno é -1
+    
+            console.log("Execicio 3: ");
+            
+            // arrays de habilidades
+            var skills = ["Javascript", "ReactJS", "React Native"];
+            var skills2 = ["C++", "Java", "HTML", "CSS"];
+            
+            // funcao que verifica se a habilidade exite no array
+            function temHabilidade (habilidades)
+            {
+                return (habilidades.indexOf("Javascript"))
+            }
+            
+            // teste da funcao com o primeiro vetor
+            var retorno = (temHabilidade(skills)==-1) ? false : true;
+            console.log("A afirmacao que o vetor 1 de habilidades possui Javascript é: "+retorno);
+            
+            // teste da funcao com o terceiro vetor
+            var retorno = (temHabilidade(skills2)==-1) ? false : true;
+            console.log("A afirmacao que o vetor 2 de habilidades possui Javascript é: "+retorno);
+        </script>
+
+        <script>
+            // exercicio 4 dos desafios
+            console.log("Exercicio 4: ");
+
+            // funcao que verificaa experiencia de um usuario de acordo com o toral de anos de estudo
+            function experiencia (anos)
+            {
+                if (anos<0)
+                {
+                    console.log("Insira um valor positivo!");
+                    return 0;
+                }
+                    else if (anos<=1)
+                        return "Iniciante";
+                        else if (anos>1 && anos<=3)
+                            return "Intermediário";
+                            else if (anos>3 && anos<=6)
+                                return "Avançado";
+                                else if (anos>=7)
+                                    return "Jedi Master";
+            }
+
+            var anos = 5;
+            console.log("A experiência do usuário é: "+experiencia(anos));
+        </script>
+
+        <script>
+            // exercicio 5 dos desafios
+            console.log("Exercicio 5: ");
+            // vetor de objetos contendo usuarios, seus nomes e habilidades
+            var usuarios = 
+            [
+                {
+                    nome: "Diego",
+                    habilidades: ["Javascript", "ReactJS", "Redux"]
+                },
+                {
+                    nome: "Gabriel",
+                    habilidades: ["VueJS", "Ruby on Rails", "Elixir"]
+                },
+                {
+                    nome: "Julia",
+                    habilidades: ["C++", "Java", "HTML", "CSS"]
+                }
+            ];
+            
+            // funcao que percorre o array de usuarios e imprime na tela seu nome e habilidades
+            function imprimeHabilidade (array)
+            {
+                // array.length é um atributo do array, portanto nao deve ser utilizado como metodo
+                // a forma array.lentgh() está incorreta e apresentará erro  
+                for(var i=0; i<array.length; i++)
+                {
+                    console.log(array[i].nome+" possui as seguintes habilidade: "+array[i].habilidades.join(", ")+".");    
+                }
+            }
+
+            // chamada da funcao 
+            imprimeHabilidade (usuarios);
+        </script>
+
+    </body>
+</html>

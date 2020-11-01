@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<hmtl>
+    <head>
+        <meta chasrset="UTF-8">
+        <title>Manipulando a DOM</title>
+    </head>
+    <body>
+        <header>
+            <h1>Aulas da Rocketseat sobre JS</h1>
+            <h2>Manipulando a DOM</h2>
+            <ul>
+                <li>
+                    Eventos Inline
+                </li>
+                <li>
+                    A DOM é composta por todos os elementos visualmente dispostos em tela
+                </li>
+            </ul>
+        </header>
+
+        <div id="app">
+            <!-- cria um botao e define como acao para click a chamada da funcao mostraAlerta()-->
+            <!-- temos diversas ações do botão alem de click-->
+            <!-- podemos fazer isso com uma input tambem -->
+            <button onClick="mostraAlerta()">Botao de teste</button>
+            <button class="botao2">Adicionar</button>
+            <input type="text" name="input1" id="entrada" class="entradaDeTeste"></input>
+            <input type="text" name="input2" id="entrada2" class="entradaDeTeste"></input>
+            
+            <!-- div para exemplificar a mudança de estilos através do JS-->
+            <div class="box" id="box"></div>
+        </div>
+
+        <!-- Trabalhando com a DOM -->
+        <script>
+            // document se referencia à pagina inteira do meu html
+            // docuemnt.getElementById(ID) me retorna os dados do elemento buscado
+            // o id de um elemento é sempre unico, por isso esse metodo retorna apenas um elemento
+            var inputElement = document.getElementById('entrada');
+            console.log(inputElement);
+
+            // document.getElementsByTagName retorna um vetor com todos os elementos que possuem a <tag> passada como parametro
+            // quando temos mais de um elemento daquela tag nos retorna uma HTMLCollection com todos os elementos
+            inputElement = document.getElementsByTagName('input');
+            console.log(inputElement);
+            
+            // ao colocar o colchete retornamos unicamente o elemento que se encontra naquela posicao
+            inputElement = document.getElementsByTagName('input')[0];
+            console.log(inputElement);
+            
+            // document.getElementsByClassName retorna um vetor com todos os elementos que possuem a class passada como parametro
+            // como a classe nao é algo unico retorna um vetor de elementos
+            // podemos utilizar os colchetes com o indice para retornar um unico elemento desejado
+            inputElement = document.getElementsByClassName('entradaDeTeste')[0];
+            console.log(inputElement);
+
+            // o querySelector nos permite andar pela DOM até encontrar o elemento
+            // nesse caso procura uma input na div #app
+            // o querySelector retorna um único elemento, trazendo o primeiro encontrado
+            // o querySelectorAll retorna uma lista com todos os elementos que correspondem à busca
+            inputElement = document.querySelector('div#app input');
+            console.log(inputElement);
+
+            // podemos tambem utilizar os atributos do elemento DOM desejado
+            // neste caso estamos utilizando o nome do atributo na Query
+            inputElement = document.querySelector('input[name=input2');
+            console.log(inputElement);
+
+            // funcao que sera chamada pelo click do botao
+            function mostraAlerta()
+            {
+                // funcao global do JS que exibe um alerta em tela
+                alert("O botao foi clicado!");
+            }
+
+            // nessa query selecionamos um botao atraves de sua classe
+            // para acessar a classe utilizamos elemento.classe
+            // nesse caso fazemos a query do botao e adicionamos uma acao atraves de sua referencia
+            // desse nao poluimos o codigo da interface com codigos e funcoes
+            var btnElement = document.querySelector("button.botao2")
+            btnElement.onclick = function()
+            {
+                // armazenamento do valor da input em uma variavel
+                var text = inputElement.value;
+                // alerta com o conteudo do texto
+                alert(text);
+            }
+        </script>
+
+        <!-- Lidando com elementos -->
+        <script>
+            // alem de referenciar elementos pelo JS podemos tambem cria-los
+            // criamos um elemento da <tag> passada
+            // definimos seu atributo href como google.com
+            // podemos definir outros atributos pelo setAttribute
+            var linkElement = document.createElement('a');
+            linkElement.setAttribute('href', 'https://google.com');
+            linkElement.setAttribute('titel', 'siteGoogle');
+
+            // criamos um elemento de texto
+            var textElement = document.createTextNode('Acessar o google');
+            
+            // definimos o textElement como filho de linkElement
+            // temos algo semelhanta a <a href: https//google.com>Acessar o google</a> 
+            linkElement.appendChild(textElement);
+            
+            // pegamos uma div do codigo atraves do querySelector e do seu id
+            // definimos o linkElement como filho do containerElement
+            var containerElement = document.querySelector('#app');
+            containerElement.appendChild(linkElement);
+
+            // é possivel remover uma elemento filho atraves da operacao removeChild
+        </script>
+
+        <!-- Alterando estilos -->
+        <script>
+            // podemos tambem manipular as estilziacoes css atraves do javascript
+            var boxElement = document.getElementById('box');
+            console.log("A query box retorna: "+boxElement);
+            boxElement.style.width = 100;
+            boxElement.style.height = 100;
+            boxElement.style.backgroundColor = '#808080';
+        </script>
+
+        <script>
+            // exercicio 1 do modulo 2
+            // cria um botao
+            // cria um elemento de texto
+            // define o elemento de texto como filho do elemento de botao
+            
+            var buttonElement = document.createElement('button');
+            var textElement = document.createTextNode('Criar um quadrado');
+            buttonElement.appendChild(textElement);
+            
+            // cria uma div
+            var containerElement = document.querySelector('.box');
+            containerElement.appendChild(buttonElement);
+
+            // esta apenas criando as divs, mas nao pega a estilizacao definida
+            buttonElement.onclick = function()
+            {
+                var quadrado = document.createElement('div');
+                quadrado.setAttribute.width = 100;
+                quadrado.style.width = 100;
+                quadrado.backgroundcolor = '#f00';
+                containerElement.appendChild(quadrado);
+            }
+        </script>
+
+        <script>
+            // exercicio 3 do modulo 2
+            var nomes = ["Diego", "Gabriel", "Lucas", "Julia", "Larissa", "Cibele"];
+            // criacao do elemnto ul
+            var ulElement = document.createElement('ul');
+            // selecao do elemento container
+            // define o elemento ul como filho da div box
+            var containerElement = document.querySelector('.box');
+            containerElement.appendChild(ulElement);
+
+            // FOR para criar um elemento li por cada nome encontrado no vetor de nomes
+            for (var i=0; i<nomes.length; i++)
+            {   
+                // cria o elemento li
+                var liElement  = document.createElement('li');
+                // cria o node de texto
+                var textElement = document.createTextNode(nomes[i]);
+                // define o node de texto como filho do li
+                liElement.appendChild(textElement);
+                // define o li, junto com o node de texto, como filhos do ul
+                ulElement.appendChild(liElement);
+            }
+        </script>
+
+        <script>
+            // exercicio 4 do modulo 2
+            // cria um botao
+            var buttonElement = document.createElement('button');
+            // cria um node de texto
+            var buttonTextElement = document.createTextNode('Adicionar um nome');
+            // define o node de texto como filho do botao
+            buttonElement.append(buttonTextElement);
+
+            // cria um input
+            var inputElement = document.createElement('input');
+            // cria uma lista nao ordenada ul
+            var ulElement = document.createElement('ul');
+  
+            // encontra o elemento container
+            var containerElement = document.querySelector('.box');
+            // define o botao e input como filhos do container
+            containerElement.appendChild(buttonElement);
+            containerElement.appendChild(inputElement);
+            containerElement.appendChild(ulElement);
+        
+            // define a funcao para o click do botao
+            buttonElement.onclick = function adicionar ()
+            {   
+                // pega o texto da input e armazena em uma variavel
+                var nome = inputElement.value;
+
+                var liElement  = document.createElement('li');
+                // cria o node de texto
+                var textElement = document.createTextNode(nome);
+                // define o node de texto como filho do li
+                liElement.appendChild(textElement);
+                // define o li, junto com o node de texto, como filhos do ul
+                ulElement.appendChild(liElement);
+                // limpa o contteudo da input
+                inputElement.value =" ";
+            }
+        </script>
+
+        <!-- Atentar para o nome das variaveis pois elas continuam existindo fora do escopo do script-->
+        <!-- Realizar mais testes para entender melhor -->
+
+    </body>
+</hmtl>
